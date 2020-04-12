@@ -13,8 +13,8 @@ class {{className}}Controller extends StateNotifier<{{className}}State> with Loc
   static SingleChildWidget provider({
     Widget child,
   }) {
-    return StateNotifierProvider<MonoPageController, MonoPageState>(
-      create: (context) => MonoPageController(),
+    return StateNotifierProvider<{{className}}Controller, {{className}}State>(
+      create: (context) => {{className}}Controller(),
       child: child,
     );
   }
