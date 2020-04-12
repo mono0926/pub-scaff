@@ -12,10 +12,16 @@ class {{className}}Controller extends StateNotifier<{{className}}State> with Loc
 
   static SingleChildWidget provider({
     Widget child,
+    {{className}}Controller value,
   }) {
-    return StateNotifierProvider<{{className}}Controller, {{className}}State>(
-      create: (context) => {{className}}Controller(),
-      child: child,
-    );
+    return value == null
+        ? StateNotifierProvider<{{className}}Controller, {{className}}State>(
+            create: (context) => {{className}}Controller(),
+            child: child,
+          )
+        : StateNotifierProvider<{{className}}Controller, {{className}}State>.value(
+            value: value,
+            child: child,
+          );
   }
 }
