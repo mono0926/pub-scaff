@@ -1,27 +1,17 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:provider/single_child_widget.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 import '{{componentName}}_state.dart';
 
 export '{{componentName}}_state.dart';
 
-class {{className}}Controller extends StateNotifier<{{className}}State> with LocatorMixin {
-  {{className}}Controller() : super(const {{className}}State());
+// TODO(mono): Fix this if needed:
+final {{componentName}}Controller = StateNotifierProvider.autoDispose(
+  (ref) => {{className}}Controller(ref),
+);
 
-  static SingleChildWidget provider({
-    Widget child,
-    {{className}}Controller value,
-  }) {
-    return value == null
-        ? StateNotifierProvider<{{className}}Controller, {{className}}State>(
-            create: (context) => {{className}}Controller(),
-            child: child,
-          )
-        : StateNotifierProvider<{{className}}Controller, {{className}}State>.value(
-            value: value,
-            child: child,
-          );
-  }
+class {{className}}Controller extends StateNotifier<{{className}}State> {
+  {{className}}Controller(this._ref) : super(const {{className}}State()) {}
+
+  final ProviderReference _ref;
 }
